@@ -2,6 +2,7 @@ import { Button, Card, CardHeader, CardBody, Divider } from '@nextui-org/react'
 // import clsx from 'clsx'
 // import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import { DotLottiePlayer } from '@dotlottie/react-player'
 import '@dotlottie/react-player/dist/index.css'
 
@@ -21,6 +22,8 @@ const message: Record<number, string> = {
 
 function App() {
 	const [isClicked, setIsClicked] = useState<boolean>(false)
+	const [isZoom, setIsZoom] = useState<boolean>(false)
+	const [isZoomOut, setIsZoomOut] = useState<boolean>(false)
 	const [messageNumber, setMessageNumber] = useState<number | null>(null)
 
 	useEffect(() => {
@@ -28,68 +31,97 @@ function App() {
 			const input_number = window.location.pathname.slice(1)
 			if (input_number in message) {
 				setMessageNumber(parseInt(input_number))
+				setIsZoomOut(true)
 			}
 		}
 	}, [])
 
 	if (messageNumber !== null && messageNumber in message) {
+		setTimeout(() => {
+			setIsZoomOut(false)
+			setIsClicked(false)
+		}, 300)
+		
 		return (
-			<div className="mx-auto h-screen py-20 px-5 container text-center">
-				<Card
-					className="mt-10 w-1/3 mx-auto p-2"
-				>
-					<CardHeader className="justify-center">
-						<p
-							className="font-bold text-5xl"
-						>
-							{messageNumber}
-						</p>
-					</CardHeader>
-					<Divider />
-					<CardBody>
-						<p
-							className="indent-8"
-						>
-							{message[messageNumber]}
-						</p>
-					</CardBody>
-				</Card>
-				<Button
-					className="mt-5"
-					onClick={() => {
-						setMessageNumber(null)
-						window.history.pushState(null, '', '/')
+			<>
+				<motion.div
+					className="bg-[#B32425] h-screen w-screen fixed z-20"
+					animate={{
+						scale: isZoomOut ? 1 : 0,
 					}}
 				>
-					Back
-				</Button>
-			</div>
+				</motion.div>
+				<div className="mx-auto h-screen py-20 px-5 container text-center">
+					<Card
+						className="mt-10 lg:w-1/3 mx-auto p-2"
+					>
+						<CardHeader className="justify-center">
+							<p
+								className="font-bold text-5xl"
+							>
+								{messageNumber}
+							</p>
+						</CardHeader>
+						<Divider />
+						<CardBody>
+							<p
+								className="indent-8"
+							>
+								{message[messageNumber]}
+							</p>
+						</CardBody>
+					</Card>
+					<Button
+						className="mt-5"
+						onClick={() => {
+							setMessageNumber(null)
+							window.history.pushState(null, '', '/')
+						}}
+					>
+						Back
+					</Button>
+				</div>
+			</>
 		)
 	}
 
 	return (
 		<>
-			<div className="mx-auto h-screen py-20 px-5 container text-center">
-				<p>เซียมซีเซียมใจ</p>
-				<DotLottiePlayer
-					src="https://lottie.host/3c5001b6-7cd0-4fce-bcdc-05b2c4b73078/Yj6LV4QIRD.lottie"
-					loop
-					autoplay
-					className="mt-10 w-1/3 mx-auto"
-					speed={isClicked ? 10 : 1}
-					onClick={() => {
-						if (isClicked) return
-						setIsClicked(true)
-
-						setTimeout(() => {
-							const randomNumber = Math.floor(Math.random() * 10) + 1
-							setMessageNumber(randomNumber)
-							setIsClicked(false)
-							window.history.pushState(null, '', `/${randomNumber}`)
-						}, 2000)
-					}}
-				/>
-				<p>กด กด กด</p>
+			<div className="h-screen py-20 px-5 text-center flex items-center">
+				<div className="mx-auto">
+					<p>เซียมซีเซียมใจ</p>
+					<motion.div
+						className="m-10"
+						whileHover={{ scale: isZoom ? 150 : 1.1 }}
+						whileTap={{ scale: isZoom ? 150 : 0.9 }}
+						animate={{ scale: isZoom ? 150 : 1 }}
+					>
+						<DotLottiePlayer
+							src="https://lottie.host/3c5001b6-7cd0-4fce-bcdc-05b2c4b73078/Yj6LV4QIRD.lottie"
+							loop
+							autoplay
+							className="mt-10 w-1/3 mx-auto"
+							speed={isClicked ? 10 : 1}
+							onClick={() => {
+								if (isClicked) return
+								setIsClicked(true)
+								
+								setTimeout(() => {
+									setIsZoom(true)
+								}, 1500)
+								
+								setTimeout(() => {
+									const randomNumber = Math.floor(Math.random() * 10) + 1
+									setMessageNumber(randomNumber)
+									setIsZoom(false)
+									setIsZoomOut(true)
+									window.history.pushState(null, '', `/${randomNumber}`)
+								}, 2000)
+							}}
+						/>
+					</motion.div>
+					<p>กด กด กด</p>
+				</div>
 			</div>
 		</>
 	)
