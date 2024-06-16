@@ -41,7 +41,7 @@ function App() {
 			setIsZoomOut(false)
 			setIsClicked(false)
 		}, 300)
-		
+
 		return (
 			<>
 				<motion.div
@@ -96,7 +96,11 @@ function App() {
 			</motion.div>
 			<div className="h-screen py-20 px-5 text-center flex items-center">
 				<div className="mx-auto">
-					<p>เซียมซีเซียมใจ</p>
+					<p
+						className="text-9xl"
+					>
+						Bui Bui Stick
+					</p>
 					<motion.div
 						className="m-10"
 						// whileHover={{ scale: isZoom ? 150 : 1.1 }}
@@ -109,16 +113,16 @@ function App() {
 							src="https://lottie.host/3c5001b6-7cd0-4fce-bcdc-05b2c4b73078/Yj6LV4QIRD.lottie"
 							loop
 							autoplay
-							className="mt-10 w-1/3 mx-auto"
+							className="mt-10 w-1/3 mx-auto cursor-pointer"
 							speed={isClicked ? 10 : 1}
 							onClick={() => {
 								if (isClicked) return
 								setIsClicked(true)
-								
+
 								setTimeout(() => {
 									setIsZoom(true)
 								}, 1500)
-								
+
 								setTimeout(() => {
 									const randomNumber = Math.floor(Math.random() * 10) + 1
 									setMessageNumber(randomNumber)
@@ -129,7 +133,11 @@ function App() {
 							}}
 						/>
 					</motion.div>
-					<p>กด กด กด</p>
+					<p
+						className="text-5xl"
+					>
+						Click to get your luck!
+					</p>
 				</div>
 			</div>
 		</>
