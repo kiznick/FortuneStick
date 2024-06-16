@@ -45,41 +45,57 @@ function App() {
 		return (
 			<>
 				<motion.div
-					className="bg-[#B32425] h-screen w-screen fixed z-20"
+					className="bg-[#B32425] h-screen w-screen fixed z-20 flex items-center"
 					animate={{
 						scale: isZoomOut ? 1 : 0,
 					}}
 				>
+					<img
+						src="./logo/Smogator.png"
+						alt="Bui Bui Wink at You"
+						className="w-1/3 mx-auto"
+					/>
 				</motion.div>
-				<div className="mx-auto h-screen py-20 px-5 container text-center">
-					<Card
-						className="mt-10 lg:w-1/3 mx-auto p-2"
-					>
-						<CardHeader className="justify-center">
-							<p
-								className="font-bold text-5xl"
-							>
-								{messageNumber}
-							</p>
-						</CardHeader>
-						<Divider />
-						<CardBody>
-							<p
-								className="indent-8"
-							>
-								{message[messageNumber]}
-							</p>
-						</CardBody>
-					</Card>
-					<Button
-						className="mt-5"
-						onClick={() => {
-							setMessageNumber(null)
-							window.history.pushState(null, '', '/')
-						}}
-					>
-						Back
-					</Button>
+				<div className="mx-auto h-screen py-20 px-5 container flex items-center">
+					<div className="w-full text-center">
+						{/* <img
+							src="./BuiWink.gif"
+							alt="Bui Bui Wink at You"
+							className="w-1/4 mx-auto z-30"
+							style={{
+								top: '-100px',
+							}}
+						/> */}
+						<Card
+							className="mt-10 lg:w-1/3 mx-auto p-2"
+						>
+							<CardHeader className="justify-center">
+								<p
+									className="font-bold text-5xl"
+								>
+									{messageNumber}
+								</p>
+							</CardHeader>
+							<Divider />
+							<CardBody>
+								<p
+									className="indent-8"
+								>
+									{message[messageNumber]}
+								</p>
+								<cite className="block text-right mt-4 text-gray-600">- Bui Bui</cite>
+							</CardBody>
+						</Card>
+						<Button
+							className="mt-5"
+							onClick={() => {
+								setMessageNumber(null)
+								window.history.pushState(null, '', '/')
+							}}
+						>
+							Back
+						</Button>
+					</div>
 				</div>
 			</>
 		)
@@ -88,11 +104,16 @@ function App() {
 	return (
 		<>
 			<motion.div
-				className="bg-[#B32425] h-screen w-screen fixed z-20"
+				className="bg-[#B32425] h-screen w-screen fixed z-20 flex items-center"
 				animate={{
 					scale: isZoom ? 1 : 0,
 				}}
 			>
+				<img
+					src="./logo/Smogator.png"
+					alt="Bui Bui Wink at You"
+					className="w-1/3 mx-auto"
+				/>
 			</motion.div>
 			<div className="h-screen py-20 px-5 text-center flex items-center">
 				<div className="mx-auto">
