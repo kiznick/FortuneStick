@@ -87,14 +87,23 @@ function App() {
 
 	return (
 		<>
+			<motion.div
+				className="bg-[#B32425] h-screen w-screen fixed z-20"
+				animate={{
+					scale: isZoom ? 1 : 0,
+				}}
+			>
+			</motion.div>
 			<div className="h-screen py-20 px-5 text-center flex items-center">
 				<div className="mx-auto">
 					<p>เซียมซีเซียมใจ</p>
 					<motion.div
 						className="m-10"
-						whileHover={{ scale: isZoom ? 150 : 1.1 }}
-						whileTap={{ scale: isZoom ? 150 : 0.9 }}
-						animate={{ scale: isZoom ? 150 : 1 }}
+						// whileHover={{ scale: isZoom ? 150 : 1.1 }}
+						// whileTap={{ scale: isZoom ? 150 : 0.9 }}
+						// animate={{ scale: isZoom ? 150 : 1 }}
+						whileHover={{ scale: 1.1 }}
+						whileTap={{ scale: 0.9 }}
 					>
 						<DotLottiePlayer
 							src="https://lottie.host/3c5001b6-7cd0-4fce-bcdc-05b2c4b73078/Yj6LV4QIRD.lottie"
