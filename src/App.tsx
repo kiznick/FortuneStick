@@ -7,16 +7,15 @@ import { DotLottiePlayer } from '@dotlottie/react-player'
 import '@dotlottie/react-player/dist/index.css'
 
 const message: Record<number, string> = {
-	1: 'A journey, long desired, shall unfold near the turning of the next moon. Trust your instincts and pack your bags.',
-	2: 'A helping hand you once offered shall return, threefold, in your time of need. Remember, kindness is a seed that always grows.',
-	3: 'Do not fear the storm clouds gathering on the horizon. They bring with them a powerful wind that will clear your path.',
-	4: 'A creative spark ignites within you. Embrace it, nurture it, and watch as it transforms your world in brilliant hues.',
-	5: 'Listen closely to the whispers of the wind. They carry a message from a loved one, a message of comfort and support.',
-	6: 'Patience is a bitter herb, but its roots hold the promise of sweet success. Do not pluck the fruit before it\'s ripe.',
-	7: 'Let go of burdens you cling to. They weigh you down and dim your inner light. Release them, and find freedom.',
-	8: 'A chance encounter sparks a new friendship, one filled with laughter and shared dreams. Open your heart and welcome it in.',
-	9: 'Obstacles on your path are not meant to deter you, but to test your resolve. Persevere, and your strength will be rewarded.',
-	10: 'The greatest treasure lies not at the end of the rainbow, but within yourself. Look inward, and discover the magic that awaits',
+	1: `Your wish or hope will come true soon. You just have to have more confidence in yourself and do your best so you don't regret it later.`,
+	2: `The problems you are facing will soon be helped by the people you once helped. You just need to open your mind and listen to their opinions.`,
+	3: `Stop worry about things that haven't happened yet. You are a talented person that know what the thing that you should do. Choose what ever you think is right, don't hesitate. Your luck has gotten better lately, please believe in yourself.`,
+	4: `If you are initiating a new project, or work, start doing it now. The best opportunity is waiting for you and will change your life in the better way. If you do, please give 100% of your energy and you will get back as much as you tried.`,
+	5: `If you have to decide on something, please think carefully. Turn around and listen to the opinions and advice from those around you. Something that you very confident with may not always be the right answer.`,
+	6: `Life or problems at this moment of your life may be difficult to solve. Please use a lot of patience and things will gradually get better. But unfortunately, don’t forgot to believe in yourself that you can do this.`,
+	7: `Sometimes letting go can be a better choice for your life right now.`,
+	8: `You are about to encounter new things in life that will bring you joy. If you ask about friends, you will meet new good friends. If you ask about your lover, you will meet that person soon.`,
+	9: `You are enjoying your life right now and may leaving some things behind. Please remember to focus on what's important.`,
 }
 
 
@@ -25,16 +24,86 @@ function App() {
 	const [isZoom, setIsZoom] = useState<boolean>(false)
 	const [isZoomOut, setIsZoomOut] = useState<boolean>(false)
 	const [messageNumber, setMessageNumber] = useState<number | null>(null)
+	const [isList, setIsList] = useState<boolean>(false)
 
 	useEffect(() => {
 		if (window.location.pathname !== '/') {
-			const input_number = window.location.pathname.slice(1)
-			if (input_number in message) {
-				setMessageNumber(parseInt(input_number))
+			const input = window.location.pathname.slice(1)
+			if (input in message) {
+				setMessageNumber(parseInt(input))
 				setIsZoomOut(true)
+			} else if (input === 'list') {
+				setIsZoomOut(true)
+				setIsList(true)
+			} else {
+				window.history.pushState(null, '', '/')
 			}
 		}
 	}, [])
+
+	if (isList) {
+		setTimeout(() => {
+			setIsZoomOut(false)
+			setIsClicked(false)
+		}, 300)
+
+		return (
+			<>
+				<motion.div
+					className="bg-[#B32425] h-screen w-screen fixed top-0 left-0 z-20 flex items-center"
+					animate={{
+						scale: isZoomOut ? 1 : 0,
+					}}
+				>
+					<img
+						src="./logo/Smogator.png"
+						alt="Bui Bui Wink at You"
+						className="w-1/3 mx-auto"
+					/>
+				</motion.div>
+				<div className="mx-auto py-20 px-5 container flex items-center">
+					<div className="w-full text-center">
+						<div className="gap-2 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+							{
+								Object.keys(message).map((key) => (
+									<Card
+										key={key}
+										className="mt-5 mx-auto p-2"
+									>
+										<CardHeader className="justify-center">
+											<p
+												className="font-bold text-5xl"
+											>
+												{key}
+											</p>
+										</CardHeader>
+										<Divider />
+										<CardBody>
+											<p
+												className="indent-8"
+											>
+												{message[parseInt(key)]}
+											</p>
+											<cite className="block text-right mt-4 text-gray-600">- Bui Bui</cite>
+										</CardBody>
+									</Card>
+								))
+							}
+						</div>
+						<Button
+							className="mt-5"
+							onClick={() => {
+								setMessageNumber(null)
+								window.history.pushState(null, '', '/')
+							}}
+						>
+							Back
+						</Button>
+					</div>
+				</div>
+			</>
+		)
+	}
 
 	if (messageNumber !== null && messageNumber in message) {
 		setTimeout(() => {
