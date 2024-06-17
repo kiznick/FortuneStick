@@ -94,6 +94,7 @@ function App() {
 							className="mt-5"
 							onClick={() => {
 								setMessageNumber(null)
+								setIsList(false)
 								window.history.pushState(null, '', '/')
 							}}
 						>
