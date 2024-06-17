@@ -8,7 +8,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <NextUIProvider className="h-screen">
             <ScrollShadow>
-                <div className="fixed flex justify-between p-5">
+                <div className="flex justify-between p-5">
                     <div className="flex-auto">
                         <img
                             src="./logo/muic.png"
@@ -33,7 +33,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 </div>
                 <App />
                 <div
-                    className="fixed bottom-0 left-0 p-5 text-center w-full"
+                    className="p-5 text-center w-full"
                 >
                     <p>Join us for election</p>
                     <p>Date: 3-4 July 2024 Time: 10:00-16:00</p>

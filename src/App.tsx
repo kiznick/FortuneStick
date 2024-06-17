@@ -45,7 +45,7 @@ function App() {
 		return (
 			<>
 				<motion.div
-					className="bg-[#B32425] h-screen w-screen fixed z-20 flex items-center"
+					className="bg-[#B32425] h-screen w-screen fixed top-0 left-0 z-20 flex items-center"
 					animate={{
 						scale: isZoomOut ? 1 : 0,
 					}}
@@ -56,7 +56,7 @@ function App() {
 						className="w-1/3 mx-auto"
 					/>
 				</motion.div>
-				<div className="mx-auto h-screen py-20 px-5 container flex items-center">
+				<div className="mx-auto py-20 px-5 container flex items-center">
 					<div className="w-full text-center">
 						{/* <img
 							src="./BuiWink.gif"
@@ -104,7 +104,7 @@ function App() {
 	return (
 		<>
 			<motion.div
-				className="bg-[#B32425] h-screen w-screen fixed z-20 flex items-center"
+				className="bg-[#B32425] h-screen w-screen fixed top-0 left-0 z-20 flex items-center"
 				animate={{
 					scale: isZoom ? 1 : 0,
 				}}
@@ -115,7 +115,7 @@ function App() {
 					className="w-1/3 mx-auto"
 				/>
 			</motion.div>
-			<div className="h-screen py-20 px-5 text-center flex items-center">
+			<div className="py-20 px-5 text-center flex items-center">
 				<div className="mx-auto">
 					<p
 						className="text-9xl"
