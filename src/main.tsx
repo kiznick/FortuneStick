@@ -37,7 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 >
                     <p>Join us for election</p>
                     <p>Date: 3-4 July 2024 Time: 10:00-16:00</p>
-                    <p>Location: Lobby, G Floor, Aditayatorn Building</p>
+                    <p>Location: Lobby, G Floor, Aditayathorn Building</p>
                 </div>
             </ScrollShadow>
         </NextUIProvider>
