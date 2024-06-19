@@ -215,7 +215,7 @@ function App() {
 								}, 1500)
 
 								setTimeout(() => {
-									const randomNumber = Math.floor(Math.random() * 10) + 1
+									const randomNumber = Math.floor(Math.random() * 9) + 1
 									setMessageNumber(randomNumber)
 									setIsZoom(false)
 									setIsZoomOut(true)
